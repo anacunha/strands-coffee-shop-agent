@@ -1,4 +1,5 @@
 from strands import Agent, tool
+from strands.session.file_session_manager import FileSessionManager
 from strands_tools import file_read, calculator
 
 SYSTEM_PROMPT = """Eres el asistente de Buen Grano, una cafetería online.
@@ -25,7 +26,13 @@ def calcular_envio(codigo_postal: str, total_pedido: float) -> str:
         valor = 87.15
     return f"Envío: ${valor:.2f} MXN para el código postal {codigo_postal}."
 
-agent = Agent(system_prompt=SYSTEM_PROMPT, tools=[file_read, calculator, calcular_envio])
+customer_id = "cli-1042"
+
+agent = Agent(
+    system_prompt=SYSTEM_PROMPT,
+    tools=[file_read, calculator, calcular_envio],
+    session_manager=FileSessionManager(session_id=customer_id, storage_dir="./sessions"),
+)
 
 while True:
     pregunta = input("\nCliente: ")
