@@ -6,6 +6,8 @@ from strands.session.file_session_manager import FileSessionManager
 from strands.tools.mcp import MCPClient
 from strands_tools import calculator, file_read
 
+from models import Pedido
+
 SYSTEM_PROMPT = """Eres el asistente de Buen Grano, una cafetería online.
 Tono: amable, directo, usa 'tú'. Responde en español. Máximo 3 frases.
 Vendes cafés especiales y accesorios de preparación.
@@ -51,6 +53,14 @@ while True:
     pregunta = input("\nCliente: ")
     if pregunta.lower() == "salir":
         break
-    print("\nAsistente: ", end="")
     agent(pregunta)
     print()
+
+result = agent(
+    "Resume el pedido que acabamos de finalizar.",
+    structured_output_model=Pedido
+)
+
+pedido: Pedido = result.structured_output
+
+print(pedido.model_dump_json(indent=2))
