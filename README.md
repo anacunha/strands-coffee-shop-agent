@@ -24,8 +24,8 @@ De ahí salen los conceptos de Strands que cubre la demo:
 
 | Concepto | En el código | Para qué sirve aquí |
 |---|---|---|
-| Herramientas propias | `@tool def calcular_envio(...)` | Una función de Python con docstring se vuelve herramienta |
-| Herramientas listas | `file_read`, `calculator` de `strands-tools` | Leer el catálogo y hacer las cuentas del pedido |
+| Herramientas de la comunidad | `file_read`, `calculator`, del paquete `strands-agents-tools` | Leer el catálogo y hacer las cuentas del pedido |
+| Herramientas personalizadas | `@tool def calcular_envio(...)` | Una función de Python con docstring se vuelve herramienta |
 | MCP | `MCPClient` → `https://mcp.stripe.com` | Crear el payment link sin escribir un cliente de la API |
 | Sesiones | `FileSessionManager` | El agente recuerda la conversación entre mensajes y entre ejecuciones |
 | Salida estructurada | `structured_output_model=Pedido` | Convierte el chat en un modelo Pydantic validado |
